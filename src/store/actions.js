@@ -5,7 +5,6 @@ import {
     FETCH_ORDERS_ERROR,
     FETCH_ORDERS_REQUEST,
     SEND_ORDERS_ERROR,
-    SEND_ORDERS_REQUEST,
     SEND_ORDERS_SUCCESS
 } from './actionTitles';
 
@@ -44,12 +43,6 @@ function sendOrdersError() {
     };
 }
 
-function sendOrdersRequest(orders) {
-    return {
-        type: SEND_ORDERS_REQUEST,
-        payload: orders
-    };
-}
 
 
 

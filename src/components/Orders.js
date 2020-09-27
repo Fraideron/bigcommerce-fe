@@ -15,7 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import {getOrders, selectOrder, sendOrders} from '../store/actions';
-import { Autorenew } from '@material-ui/icons';
+
 
 
 const useStyles = makeStyles({
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 export function Orders(props) {
     const classes = useStyles();
 
-    const { sendOrders, getOrders, selectOrder, orders, componentDidMount} = props;
+    const { sendOrders, getOrders, selectOrder, orders} = props;
 
     function isDisabled() {
         return !orders.filter((order) => order.isChecked).length;
