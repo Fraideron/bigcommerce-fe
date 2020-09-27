@@ -72,6 +72,20 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: theme.spacing(3),
   },
+  initialisation: {
+    top: '0px',
+    left: '0px',
+    width: '100vw',
+    height: '100%',
+    margin: '0 auto',
+    position: 'absolute',
+    backgroundColor: 'white',
+    zIndex: 10000,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: '2.5em'
+  }
 }));
 
 function App(props) {
@@ -125,6 +139,9 @@ function App(props) {
     return (
         <Provider store={store}>
             <div className="App">
+            <div className={classes.initialisation}>
+              <span>App initialisation...</span>
+            </div>
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>

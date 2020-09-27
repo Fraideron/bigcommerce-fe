@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import NavBar from './NavBar';
 import { makeStyles } from '@material-ui/core/styles';
 import { bindActionCreators } from "redux";
@@ -14,7 +14,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
-import {getOrders, selectOrder} from '../store/actions';
+import {getOrders, selectOrder, sendOrders} from '../store/actions';
+import { Autorenew } from '@material-ui/icons';
 
 
 const useStyles = makeStyles({
@@ -24,7 +25,8 @@ const useStyles = makeStyles({
         margin: '0 auto',
     },
     button: {
-        marginTop: 100,
+        marginTop: 50,
+        marginBottom: 50,
         padding: '10px 30px'
     },
     selected: {
@@ -32,22 +34,23 @@ const useStyles = makeStyles({
     },
     none: {
         backgroundColor: 'none'
-    }
+    },
+    
+
 });
 
 export function Orders(props) {
     const classes = useStyles();
 
-    const {getOrders, selectOrder, orders} = props;
-
-
-    function loadOrders() {
-        console.log('Load orders');
-    }
+    const { sendOrders, getOrders, selectOrder, orders, componentDidMount} = props;
 
     function isDisabled() {
         return !orders.filter((order) => order.isChecked).length;
     }
+
+    useEffect(() => {
+        getOrders([]);   
+    }, []);
 
     return (
         <Grid item xs={12}>
@@ -62,11 +65,13 @@ export function Orders(props) {
                             <TableCell align="center">SKU</TableCell>
                             <TableCell align="center">Base Price</TableCell>
                             <TableCell align="center">Quantity</TableCell>
+                            <TableCell align="center">Location</TableCell>
+                            <TableCell align="center">Customer Name</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {orders.map((row, i) => (
-                            <TableRow className={row.isChecked ? classes.selected : classes.none} onClick={(event) => selectOrder(orders, row.id)} key={i}>
+                            <TableRow className={row.isChecked ? classes.selected : classes.none} onClick={(event) => selectOrder(orders, row.productName)} key={i}>
                                 <TableCell component="th" scope="row">
                                     <Checkbox checked={row.isChecked} value={row.isChecked}></Checkbox>
                                 </TableCell>
@@ -75,6 +80,8 @@ export function Orders(props) {
                                 <TableCell align="center">{row.sku || '-'}</TableCell>
                                 <TableCell align="center">{row.basePrice}</TableCell>
                                 <TableCell align="center">{row.quantity}</TableCell>
+                            <TableCell align="center">{row.country}, {row.city}</TableCell>
+                            <TableCell align="center">{row.first_name} {row.last_name}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -86,6 +93,7 @@ export function Orders(props) {
                 disabled={isDisabled()}
                 className={classes.button}
                 endIcon={<SendIcon></SendIcon>}
+                onClick={(event) => sendOrders(orders)}
             >
                 Send
             </Button>
@@ -102,8 +110,8 @@ const putStateToProps = (state) =>  {
 const putActionsToProps = (dispatch) => {
     return {
         selectOrder: bindActionCreators(selectOrder, dispatch),
-        getOrders: bindActionCreators(getOrders, dispatch)
-
+        getOrders: bindActionCreators(getOrders, dispatch),
+        sendOrders: bindActionCreators(sendOrders, dispatch)
     };
 };
 

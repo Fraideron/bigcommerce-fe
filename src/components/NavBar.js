@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) =>
 export function NavBar(props) {
   const classes = useStyles();
 
-  const { getOrders } = props;
+  const { getOrders, orders } = props;
 
 
   return (
@@ -43,7 +43,7 @@ export function NavBar(props) {
           color="primary"
           className={classes.button}
           endIcon={<Refresh></Refresh>}
-          onClick={() => { getOrders() }}
+          onClick={() => { getOrders(orders) }}
         >
           Update Orders
         </Button>
