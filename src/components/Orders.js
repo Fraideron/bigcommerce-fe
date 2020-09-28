@@ -48,9 +48,9 @@ export function Orders(props) {
         return !orders.filter((order) => order.isChecked).length;
     }
 
-    useEffect(() => {
-        getOrders([]);   
-    }, []);
+    // useEffect(() => {
+    //     getOrders([]);   
+    // }, []);
 
     return (
         <Grid item xs={12}>
