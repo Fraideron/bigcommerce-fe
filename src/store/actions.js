@@ -8,7 +8,7 @@ import {
     SEND_ORDERS_SUCCESS
 } from './actionTitles';
 
-
+const DOMAIN = 'http://localhost:3003';
 export const sendOrders = (orders) => {
     return dispatch => {
         dispatch(sendOrdersError(orders));
@@ -19,7 +19,7 @@ export const sendOrders = (orders) => {
 
 async function sendPostOrdersRequest(orders, dispatch) {
     try {
-        const response = await fetch('http://localhost:3003/api/orders', {
+        const response = await fetch(`${DOMAIN}/api/orders`, {
             method: 'POST', // или 'PUT'
             body: JSON.stringify({ orders }),
             headers: {
@@ -49,7 +49,7 @@ function sendOrdersError() {
 export const getOrders = (orders) => {
     return dispatch => {
         dispatch(fetchOrdersRequest(orders));
-        return fetch('http://localhost:3003/api/orders')
+        return fetch(`${DOMAIN}/api/orders`)
             .then(response => response.json())
             .then(data => dispatch(receiveOrders(data)))
             .catch(err => dispatch(fetchOrdersError()))
