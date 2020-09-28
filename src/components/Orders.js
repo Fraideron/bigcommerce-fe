@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import NavBar from './NavBar';
 import { makeStyles } from '@material-ui/core/styles';
 import { bindActionCreators } from "redux";
@@ -42,7 +42,7 @@ const useStyles = makeStyles({
 export function Orders(props) {
     const classes = useStyles();
 
-    const { sendOrders, getOrders, selectOrder, orders} = props;
+    const { sendOrders, selectOrder, orders} = props;
 
     function isDisabled() {
         return !orders.filter((order) => order.isChecked).length;
