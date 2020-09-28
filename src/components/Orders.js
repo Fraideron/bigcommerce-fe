@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import NavBar from './NavBar';
 import { makeStyles } from '@material-ui/core/styles';
 import { bindActionCreators } from "redux";
@@ -15,6 +15,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import {getOrders, selectOrder, sendOrders} from '../store/actions';
+import transitions from '@material-ui/core/styles/transitions';
 
 
 
@@ -35,25 +36,51 @@ const useStyles = makeStyles({
     none: {
         backgroundColor: 'none'
     },
-    
+    initialisation: {
+        top: '0px',
+        left: '0px',
+        width: '100vw',
+        height: '100%',
+        margin: '0 auto',
+        position: 'absolute',
+        backgroundColor: 'white',
+        zIndex: 10000,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        fontSize: '2.5em'
+      }
 
 });
+
 
 export function Orders(props) {
     const classes = useStyles();
 
-    const { sendOrders, selectOrder, orders} = props;
+    const { sendOrders, selectOrder, getOrders, orders, type} = props;
 
     function isDisabled() {
         return !orders.filter((order) => order.isChecked).length;
     }
 
-    // useEffect(() => {
-    //     getOrders([]);   
-    // }, []);
+    useEffect(() => {
+        getOrders([]);   
+    }, []);
+
+    function Information() {
+        if (type === 'FETCH_ORDERS_REQUEST') {
+            return (
+                <div className={classes.initialisation}>
+                <span>App initialisation...</span>
+              </div>
+            )
+        } 
+        return null;
+    }
 
     return (
         <Grid item xs={12}>
+            <Information/>
             <NavBar></NavBar>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
@@ -103,6 +130,7 @@ export function Orders(props) {
 
 const putStateToProps = (state) =>  {
     return {
+        type: state.type,
         orders: state.orders
     }
 };

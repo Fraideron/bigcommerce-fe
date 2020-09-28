@@ -18,6 +18,7 @@ export const rootReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
+                    type: action.type,
                     orders: action.payload
                 };
             }
@@ -25,6 +26,7 @@ export const rootReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
+                    type: action.type,
                     orders: action.payload
                 };
             }
@@ -32,6 +34,7 @@ export const rootReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
+                    type: action.type,
                     orders: action.payload
                 };
             }
@@ -39,6 +42,7 @@ export const rootReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
+                    type: action.type,
                     orders: action.payload
                 };
             }
@@ -46,6 +50,7 @@ export const rootReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
+                    type: action.type,
                     orders: action.payload
                 };
             }
@@ -53,6 +58,7 @@ export const rootReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
+                    type: action.type,
                     orders: action.payload
                 };
             }
@@ -60,6 +66,7 @@ export const rootReducer = (state = initialState, action) => {
             {
                 return {
                     ...state,
+                    type: action.type,
                     orders: action.payload
                 };
             }

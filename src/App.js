@@ -139,9 +139,7 @@ function App(props) {
     return (
         <Provider store={store}>
             <div className="App">
-            <div className={classes.initialisation}>
-              <span>App initialisation...</span>
-            </div>
+            
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>
