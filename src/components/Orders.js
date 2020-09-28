@@ -15,7 +15,6 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import {getOrders, selectOrder, sendOrders} from '../store/actions';
-import transitions from '@material-ui/core/styles/transitions';
 
 
 
@@ -71,7 +70,7 @@ export function Orders(props) {
         if (type === 'FETCH_ORDERS_REQUEST') {
             return (
                 <div className={classes.initialisation}>
-                <span>App initialisation...</span>
+                <span>Orders request...</span>
               </div>
             )
         } 
