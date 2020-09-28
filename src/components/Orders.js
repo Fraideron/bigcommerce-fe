@@ -64,7 +64,7 @@ export function Orders(props) {
 
     useEffect(() => {
         getOrders([]);   
-    }, []);
+    }, orders);
 
     function Information() {
         if (type === 'FETCH_ORDERS_REQUEST') {
