@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import {getOrders} from '../store/actions';
+import Cookies from 'universal-cookie';
 
 
 
@@ -33,10 +34,9 @@ export function NavBar(props) {
 
 
   function setCookie() {
-        const d = new Date();
-        d.setTime(d.getTime() + (23*60*1000));
-        document.cookie = `asd=cvalue123; ` + 300;
-    }
+    const cookies = new Cookies();
+    cookies.set('myCat', 'Pacman');
+  }
 
     
 
