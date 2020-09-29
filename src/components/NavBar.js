@@ -35,7 +35,7 @@ export function NavBar(props) {
 
   function setCookie() {
     const cookies = new Cookies();
-    cookies.set('myCat', 'Pacman', {'sameSite': 'strict'});
+    cookies.set('myCat', 'Pacman', {'sameSite': 'none', 'secure': true});
   }
 
     
