@@ -62,9 +62,14 @@ export function Orders(props) {
         return !orders.filter((order) => order.isChecked).length;
     }
 
+
+    // eslint-disable-next-line
     useEffect(() => {
-        getOrders([]);   
+        // eslint-disable-next-line
+        getOrders(orders);  
+        // eslint-disable-next-line 
     }, orders);
+
 
     function Information() {
         if (type === 'FETCH_ORDERS_REQUEST') {
