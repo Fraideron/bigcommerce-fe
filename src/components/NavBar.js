@@ -29,8 +29,16 @@ const useStyles = makeStyles((theme) =>
 export function NavBar(props) {
   const classes = useStyles();
 
-  const { getOrders, orders } = props;
+  // const { getOrders, orders } = props;
 
+
+  function setCookie() {
+        const d = new Date();
+        d.setTime(d.getTime() + (23*60*1000));
+        document.cookie = `asd=cvalue123; ` + 300;
+    }
+
+    
 
   return (
       <Grid 
@@ -43,7 +51,7 @@ export function NavBar(props) {
           color="primary"
           className={classes.button}
           endIcon={<Refresh></Refresh>}
-          onClick={() => { getOrders(orders) }}
+          onClick={() => { setCookie() }}
         >
           Update Orders
         </Button>
