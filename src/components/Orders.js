@@ -15,6 +15,8 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import {getOrders, selectOrder, sendOrders} from '../store/actions';
+import Cookies from 'universal-cookie';
+import { useLocation} from "react-router";
 
 
 
@@ -55,6 +57,7 @@ const useStyles = makeStyles({
 
 export function Orders(props) {
     const classes = useStyles();
+    const location = useLocation();
 
     const { sendOrders, selectOrder, getOrders, orders, type} = props;
 
@@ -62,6 +65,24 @@ export function Orders(props) {
         return !orders.filter((order) => order.isChecked).length;
     }
 
+
+    const setCookie = () => {
+        const sessionIndex = location.search.indexOf('session');
+        if (!sessionIndex) {
+            return;
+        } 
+        const sessionHashStart = sessionIndex + 8;
+        const sessionHashEnd = location.search.length;
+
+        const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
+
+        const cookies = new Cookies();
+        cookies.set('__session', sessionHash, {'sameSite': 'none', 'secure': true});
+    };
+
+    useEffect(() => {
+        setCookie();    
+    })
 
     // eslint-disable-next-line
     useEffect(() => {

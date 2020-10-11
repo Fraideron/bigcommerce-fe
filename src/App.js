@@ -28,6 +28,7 @@ import ContactUs from './components/ContactUs';
 import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger'
 
+
 const loggerMiddleware = createLogger()
 
 const store = createStore(
@@ -117,6 +118,8 @@ function App(props) {
         },
     ]
 
+
+
     const drawer = (
         <div>
           <div className={classes.toolbar} />
@@ -133,6 +136,8 @@ function App(props) {
         </div>
       );
     
+
+
 
     const container = window !== undefined ? () => window().document.body : undefined;
 
@@ -206,7 +211,7 @@ function App(props) {
                                 <Route path="/templates">
                                     <EmailTemplates/>
                                 </Route>
-                                <Route path="/">
+                                <Route path="/orders">
                                     <Orders/>
                                 </Route>
                             </Switch>

@@ -8,7 +8,7 @@ import {
     SEND_ORDERS_SUCCESS
 } from './actionTitles';
 
-const DOMAIN = '306a8bd2d0e0.ngrok.io';
+const DOMAIN = 'http://localhost:3003';
 export const sendOrders = (orders) => {
     return dispatch => {
         dispatch(sendOrdersError(orders));
@@ -42,8 +42,6 @@ function sendOrdersError() {
         payload: []
     };
 }
-
-
 
 
 export const getOrders = (orders) => {

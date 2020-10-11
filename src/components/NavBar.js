@@ -6,7 +6,6 @@ import { Grid } from '@material-ui/core';
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import {getOrders} from '../store/actions';
-import Cookies from 'universal-cookie';
 
 
 
@@ -30,13 +29,7 @@ const useStyles = makeStyles((theme) =>
 export function NavBar(props) {
   const classes = useStyles();
 
-  // const { getOrders, orders } = props;
-
-
-  function setCookie() {
-    const cookies = new Cookies();
-    cookies.set('myCat', 'Pacman', {'sameSite': 'none', 'secure': true});
-  }
+  const { getOrders } = props;
 
     
 
@@ -51,7 +44,7 @@ export function NavBar(props) {
           color="primary"
           className={classes.button}
           endIcon={<Refresh></Refresh>}
-          onClick={() => { setCookie() }}
+          onClick={() => { getOrders() }}
         >
           Update Orders
         </Button>
