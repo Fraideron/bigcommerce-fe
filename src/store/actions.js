@@ -8,7 +8,7 @@ import {
     SEND_ORDERS_SUCCESS
 } from './actionTitles';
 
-const DOMAIN = 'c809603a2192.ngrok.io';
+const DOMAIN = '306a8bd2d0e0.ngrok.io';
 export const sendOrders = (orders) => {
     return dispatch => {
         dispatch(sendOrdersError(orders));
