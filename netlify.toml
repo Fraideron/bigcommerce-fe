@@ -1,4 +1,6 @@
 [[redirects]]
-  from = "/*"
+  from = "/orders"
   to = "/"
-  status = 302
+  status = 301
+  force = false
+  query = {session = ":session"} #
