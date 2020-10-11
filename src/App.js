@@ -211,7 +211,7 @@ function App(props) {
                                 <Route path="/templates">
                                     <EmailTemplates/>
                                 </Route>
-                                <Route path="/orders">
+                                <Route path="/">
                                     <Orders/>
                                 </Route>
                             </Switch>
