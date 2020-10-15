@@ -16,8 +16,9 @@ import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import { getOrders, selectOrder, sendOrders } from '../store/actions';
 import Cookies from 'universal-cookie';
+import { useLocation } from "react-router";
 
-const cookies = new Cookies();
+
 
 const useStyles = makeStyles({
     table: {
@@ -53,8 +54,10 @@ const useStyles = makeStyles({
 
 });
 
+
 export function Orders(props) {
     const classes = useStyles();
+    const location = useLocation();
 
     const { sendOrders, selectOrder, getOrders, orders, type } = props;
 
@@ -64,6 +67,7 @@ export function Orders(props) {
 
 
     const setCookie = () => {
+        const cookies = new Cookies();
         const sessionIndex = location.search.indexOf('session');
         if (!sessionIndex) {
             return;
@@ -72,8 +76,8 @@ export function Orders(props) {
         const sessionHashEnd = location.search.length;
 
         const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
-        
-        cookies.set('__session', sessionHash, { 'SameSite': 'none', 'secure': true});
+     
+        cookies.set('__session', sessionHash, { 'SameSite': 'none', 'secure': true });
     };
 
     useEffect(() => {
