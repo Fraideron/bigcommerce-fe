@@ -66,17 +66,16 @@ export function Orders(props) {
 
 
     const setCookie = () => {
-        // const sessionIndex = location.search.indexOf('session');
-        // if (!sessionIndex) {
-        //     return;
-        // }
-        // const sessionHashStart = sessionIndex + 8;
-        // const sessionHashEnd = location.search.length;
+        const sessionIndex = location.search.indexOf('session');
+        if (!sessionIndex) {
+            return;
+        }
+        const sessionHashStart = sessionIndex + 8;
+        const sessionHashEnd = location.search.length;
 
-        // const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
-        console.log('session');
-        const cookies = new Cookies();
-        cookies.set('__session', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdG9yZV9pZCI6IjF3Z2YyMTUwNXoiLCJhY2Nlc3NfdG9rZW4iOiIzNmV2dWZzeGowY2V2MG04enBmdTV3anR4ZTJxc3ZnIiwiaWF0IjoxNjAyNzU4MDYyfQ.exb7hVKAfmZPxLEtpepvFPnTK0CJ05rt8mOQY1NiPag', { 'SameSite': 'none', 'secure': false, 'domain':'http://1fd22d682a3b.ngrok.io' });
+        const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
+        
+        cookies.set('__session', sessionHash, { 'SameSite': 'none', 'secure': false});
     };
 
     useEffect(() => {
