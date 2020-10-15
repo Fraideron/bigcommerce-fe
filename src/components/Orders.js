@@ -16,9 +16,8 @@ import Button from '@material-ui/core/Button';
 import SendIcon from '@material-ui/icons/Send';
 import { getOrders, selectOrder, sendOrders } from '../store/actions';
 import Cookies from 'universal-cookie';
-import { useLocation } from "react-router";
 
-
+const cookies = new Cookies();
 
 const useStyles = makeStyles({
     table: {
@@ -53,7 +52,6 @@ const useStyles = makeStyles({
     }
 
 });
-
 
 export function Orders(props) {
     const classes = useStyles();
