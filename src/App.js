@@ -144,7 +144,6 @@ function App(props) {
     return (
         <Provider store={store}>
             <div className="App">
-            
             <CssBaseline />
             <AppBar position="fixed" className={classes.appBar}>
                 <Toolbar>

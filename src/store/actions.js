@@ -1,4 +1,6 @@
 import fetch from 'cross-fetch'
+import Cookies from 'universal-cookie';
+import headers from '../helpers/headers';
 import {
     ACTION_SELECT_ORDER,
     FETCH_ORDERS_SUCCESS,
@@ -8,7 +10,8 @@ import {
     SEND_ORDERS_SUCCESS
 } from './actionTitles';
 
-const DOMAIN = 'http://localhost:3003';
+const cookies = new Cookies();
+const DOMAIN = 'http://1fd22d682a3b.ngrok.io';
 export const sendOrders = (orders) => {
     return dispatch => {
         dispatch(sendOrdersError(orders));
@@ -22,9 +25,7 @@ async function sendPostOrdersRequest(orders, dispatch) {
         const response = await fetch(`${DOMAIN}/api/orders`, {
             method: 'POST', // или 'PUT'
             body: JSON.stringify({ orders }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            headers: headers(true)
         });
         const json = await response.json();
         return {
@@ -45,9 +46,14 @@ function sendOrdersError() {
 
 
 export const getOrders = (orders) => {
+    const session = cookies.get('__session');
+    console.log('session->', session);
     return dispatch => {
         dispatch(fetchOrdersRequest(orders));
-        return fetch(`${DOMAIN}/api/orders`)
+        return fetch(`${DOMAIN}/api/orders`, {
+                method: 'GET',
+                headers: headers(true)
+            })
             .then(response => response.json())
             .then(data => dispatch(receiveOrders(data)))
             .catch(err => dispatch(fetchOrdersError()))
