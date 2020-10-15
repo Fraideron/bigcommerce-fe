@@ -11,7 +11,7 @@ import {
 } from './actionTitles';
 
 const cookies = new Cookies();
-const DOMAIN = 'http://1fd22d682a3b.ngrok.io';
+const DOMAIN = 'https://1fd22d682a3b.ngrok.io';
 export const sendOrders = (orders) => {
     return dispatch => {
         dispatch(sendOrdersError(orders));
