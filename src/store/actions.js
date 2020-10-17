@@ -11,7 +11,7 @@ import {
 } from './actionTitles';
 
 const cookies = new Cookies();
-const DOMAIN = 'https://1fd22d682a3b.ngrok.io';
+const DOMAIN = 'https://8ae82dc39dd5.ngrok.io';
 export const sendOrders = (orders) => {
     return dispatch => {
         dispatch(sendOrdersError(orders));
@@ -55,12 +55,12 @@ export const getOrders = (orders) => {
                 headers: headers(true)
             })
             .then(response => response.json())
-            .then(data => dispatch(receiveOrders(data)))
-            .catch(err => dispatch(fetchOrdersError()))
+            .then(data => dispatch(fetchOrdersSuccess(data)))
+            .catch(err => dispatch(fetchOrdersError(err)))
     }
 };
 
-function receiveOrders(items) {
+function fetchOrdersSuccess(items) {
     let orders = JSON.parse(JSON.stringify(items));
     orders = orders.map(item => {
         item['isChecked'] = false;
@@ -72,7 +72,8 @@ function receiveOrders(items) {
     }
 }
 
-function fetchOrdersError() {
+function fetchOrdersError(err) {
+    console.log('Error -> ', err);
     return {
         type: FETCH_ORDERS_ERROR,
         payload: []
