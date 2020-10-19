@@ -1,5 +1,4 @@
 import fetch from 'cross-fetch'
-import Cookies from 'universal-cookie';
 import headers from '../helpers/headers';
 import {
     ACTION_SELECT_ORDER,
@@ -10,8 +9,7 @@ import {
     SEND_ORDERS_SUCCESS
 } from './actionTitles';
 
-const cookies = new Cookies();
-const DOMAIN = 'https://fdb571b2da56.ngrok.io';
+const DOMAIN = 'https://ea340be67fae.ngrok.io';
 export const sendOrders = (orders) => {
     return dispatch => {
         dispatch(sendOrdersError(orders));
@@ -23,7 +21,7 @@ export const sendOrders = (orders) => {
 async function sendPostOrdersRequest(orders, dispatch) {
     try {
         const response = await fetch(`${DOMAIN}/api/orders`, {
-            method: 'POST', // или 'PUT'
+            method: 'POST',
             body: JSON.stringify({ orders }),
             headers: headers(true)
         });
@@ -46,9 +44,10 @@ function sendOrdersError() {
 
 
 export const getOrders = (orders) => {
-    const session = cookies.get('__session');
-    console.log('session->', session);
-    return dispatch => {
+    console.log('before get orders', orders);
+
+    return (dispatch) => {
+        console.log('get orders', orders);
         dispatch(fetchOrdersRequest(orders));
         return fetch(`${DOMAIN}/api/orders`, {
                 method: 'GET',
@@ -61,11 +60,14 @@ export const getOrders = (orders) => {
 };
 
 function fetchOrdersSuccess(items) {
+    console.log(items);
     let orders = JSON.parse(JSON.stringify(items));
     orders = orders.map(item => {
         item['isChecked'] = false;
         return item;
-    })
+    });
+    console.log('orders', orders);
+
     return {
         type: FETCH_ORDERS_SUCCESS,
         payload: orders

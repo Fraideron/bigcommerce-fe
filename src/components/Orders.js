@@ -62,9 +62,8 @@ export function Orders(props) {
     const { sendOrders, selectOrder, getOrders, orders, type } = props;
 
     function isDisabled() {
-        return !orders.filter((order) => order.isChecked).length;
+        return orders && !orders.filter((order) => order.isChecked).length;
     }
-
 
     const setCookie = () => {
         const cookies = new Cookies();
@@ -87,9 +86,12 @@ export function Orders(props) {
     // eslint-disable-next-line
     useEffect(() => {
         // eslint-disable-next-line
-        getOrders(orders);
+
+            getOrders(orders);
+
         // eslint-disable-next-line 
     }, orders);
+
 
 
     function Information() {
@@ -121,7 +123,8 @@ export function Orders(props) {
                     </TableRow> 
                 </TableHead> 
                 <TableBody>
-                    {orders.map((row, i) => ( 
+                    {
+                        orders && orders.map((row, i) => ( 
                         <TableRow className={row.isChecked ? classes.selected : classes.none} onClick={(event) => selectOrder(orders, row.productName)} key={i}>
                             <TableCell component="th" scope="row">
                                 <Checkbox checked ={row.isChecked} value={row.isChecked}></Checkbox> 

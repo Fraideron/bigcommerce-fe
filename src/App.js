@@ -118,8 +118,6 @@ function App(props) {
         },
     ]
 
-
-
     const drawer = (
         <div>
           <div className={classes.toolbar} />
