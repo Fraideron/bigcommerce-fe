@@ -72,7 +72,7 @@ export function Orders(props) {
             return;
         }
         const sessionHashStart = sessionIndex + 10;
-        const sessionHashEnd = location.search.length;
+        const sessionHashEnd = location.search.length - 17;
 
         const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
         console.log('sessionHash -> ', sessionHash);
