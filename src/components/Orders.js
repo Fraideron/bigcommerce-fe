@@ -75,7 +75,7 @@ export function Orders(props) {
         const sessionHashEnd = location.search.length;
 
         const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
-     
+        console.log('sessionHash -> ', sessionHash);
         cookies.set('__session', sessionHash, { 'SameSite': 'none', 'secure': true });
     };
 
