@@ -67,11 +67,11 @@ export function Orders(props) {
 
     const setCookie = () => {
         const cookies = new Cookies();
-        const sessionIndex = location.search.indexOf('session');
+        const sessionIndex = location.search.indexOf('BC_COOKIE');
         if (!sessionIndex) {
             return;
         }
-        const sessionHashStart = sessionIndex + 8;
+        const sessionHashStart = sessionIndex + 10;
         const sessionHashEnd = location.search.length;
 
         const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
