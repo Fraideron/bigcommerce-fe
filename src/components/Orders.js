@@ -67,7 +67,7 @@ export function Orders(props) {
 
     const setCookie = () => {
         const cookies = new Cookies();
-        const sessionIndex = location.search.indexOf('session');
+        const sessionIndex = location.search.indexOf('BC_COOKIE');
         if (!sessionIndex) {
             return;
         }
