@@ -72,11 +72,11 @@ export function Orders(props) {
             return;
         }
         const sessionHashStart = sessionIndex + 10;
-        const sessionHashEnd = location.search.length - 17;
+        const sessionHashEnd = location.search.length;
 
         const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
         console.log('sessionHash -> ', sessionHash);
-        cookies.set('__session', sessionHash, { 'SameSite': 'none', 'secure': true });
+        cookies.set('__session', sessionHash, { 'SameSite': 'none', 'secure': true, domain: '/' });
     };
 
     useEffect(() => {
