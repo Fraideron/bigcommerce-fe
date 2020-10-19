@@ -76,7 +76,7 @@ export function Orders(props) {
 
         const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
         console.log('sessionHash -> ', sessionHash);
-        cookies.set('__session', sessionHash, { 'SameSite': 'none', 'secure': true, domain: '/' });
+        cookies.set('__session', 'sessionHash', { 'SameSite': 'none', 'secure': true });
     };
 
     useEffect(() => {
