@@ -66,17 +66,17 @@ export function Orders(props) {
     }
 
     const setCookie = () => {
-        const cookies = new Cookies();
-        const sessionIndex = location.search.indexOf('BC_COOKIE');
+        const sessionIndex = location.search.indexOf('session');
         if (!sessionIndex) {
             return;
-        }
-        const sessionHashStart = sessionIndex + 10;
+        } 
+        const sessionHashStart = sessionIndex + 8;
         const sessionHashEnd = location.search.length;
 
         const sessionHash = location.search.substring(sessionHashStart, sessionHashEnd);
-        console.log('sessionHash -> ', sessionHash);
-        cookies.set('__session', 'sessionHash', { 'SameSite': 'none', 'secure': true });
+
+        const cookies = new Cookies();
+        cookies.set('__session', sessionHash, {'sameSite': 'none', 'secure': true});
     };
 
     useEffect(() => {
@@ -86,9 +86,7 @@ export function Orders(props) {
     // eslint-disable-next-line
     useEffect(() => {
         // eslint-disable-next-line
-
             getOrders(orders);
-
         // eslint-disable-next-line 
     }, orders);
 
